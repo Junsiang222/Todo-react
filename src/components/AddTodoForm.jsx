@@ -1,35 +1,42 @@
-function AddTodoForm(props){
-  const{todos,setTodos}=props;
-
-    return(
-      <div>
-           <form className="d-flex justify-content-between align-items-center">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Add new item..."
-              id="taskname"
-              required
-            />
-            <button className="btn btn-primary btn-sm rounded ms-2" onClick={(event)=>{
-              event.preventDefault();
-               if (taskname.value === "") {
-                    alert("Please fill in the name");
-                  } else {
-                     setTodos([
-                      ...todos,
-                      {
-                        id: Math.random(),
-                        text: taskname.value,
-                      },
-                    ]);
-                    // clear the input
-                    taskname.value = "";
-                  }
-
-            }}>Add</button>
-          </form>
-        </div>
-    );
+function AddTodoForm(props) {
+  const { todos, setTodos } = props;
+  return (
+    <div className="mt-4">
+      <form className="d-flex justify-content-between align-items-center">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Add new item..."
+          id="task"
+          required
+        />
+        <button
+          className="btn btn-primary btn-sm rounded ms-2"
+          onClick={(event) => {
+            event.preventDefault();
+            // make sure the input is not empty
+            if (task.value === "") {
+              alert("Please fill in your task name");
+            } else {
+              // add new task
+              setTodos([
+                ...todos,
+                {
+                  id: Math.random(),
+                  label: task.value,
+                  isCompleted: false,
+                },
+              ]);
+              // clear the input field
+              task.value = "";
+            }
+          }}
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
 }
+
 export default AddTodoForm;

@@ -1,19 +1,24 @@
 import TodoItem from "./TodoItem";
 
 function TodoList(props) {
-  const { todos } = props;
+  const { todos, onDelete, onCompleted } = props;
   return (
-    <div
-      className="card rounded shadow-sm mx-auto my-4"
-      style={{ maxWidth: "500px", margin: "20px auto" }}
-    >
-      <ul className="list-group">
-        {todos.map((list) => {
-          const { text, id } = list;
-          return <TodoItem key={id} text={text} isCompleted={false} />;
-        })}
-      </ul>
-    </div>
+    <ul className="list-group">
+      {todos.map((item) => {
+        const { id, label, isCompleted } = item;
+        return (
+          <TodoItem
+            key={id}
+            id={id}
+            label={label}
+            isCompleted={isCompleted}
+            onDelete={onDelete}
+            onCompleted={onCompleted}
+          />
+        );
+      })}
+    </ul>
   );
 }
+
 export default TodoList;
